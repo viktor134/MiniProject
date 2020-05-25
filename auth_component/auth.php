@@ -30,6 +30,8 @@ else
             'name'=>$count['name']
         ];
 
+
+
         header('Location:../index.php');
     }
     elseif ($count->id==0)
