@@ -2,6 +2,8 @@
 require 'config_db.php';
 require 'users_component/get_users.php';
 session_start();
+echo $_COOKIE['email'];
+echo "sdasada";
 ?>
 
 <!doctype html>
@@ -75,9 +77,12 @@ session_start();
 
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-
-
+                    <?if($user['avatar']==null) : ?>
+                        <img src="/uploads/no-image.jpg" width="200px"/>
+                   <?else:?>
                         <img src="/uploads/<?= $user['avatar'] ?>" width="200px"/>
+
+                        <?endif;?>
 
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.</p>
@@ -101,14 +106,16 @@ session_start();
             <? endforeach; ?>
         </div>
     </div>
+
     <div class="form-group">
         <form action="users_component/comment.php" method="post">
             <label for="exampleFormControlTextarea1">Comments</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="title"></textarea>
-            <input type="hidden" name="id" value="<?=$user['id'] ?>" >
-    </div>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
+            <input type="hidden" name="user_id" value="<?=$user['id'] ?>" >
+
     <button class="btn btn-success">comments</button>
     </form>
+    </div>
     </div>
     </div>
 </main>

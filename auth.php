@@ -1,5 +1,6 @@
 <?php
-
+$email=$_COOKIE['email'];
+$password=$_COOKIE['password'];
 
 ?>
 
@@ -17,7 +18,9 @@
 <form action="/auth_component/auth.php"  method="post">
     <div class="form-group">
         <label for="exampleFormControlInput1">Email address</label>
-        <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+        <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email"
+        value="<?php if(isset($_COOKIE["email"])) { echo $_COOKIE["email"]; } ?>" >
+
 
     </div>
 
@@ -25,7 +28,8 @@
 
     <div class="form-group">
         <label for="exampleFormControlInput1">Password</label>
-        <input type="password" class="form-control" id="password" name="password" required>
+        <input type="password" class="form-control" id="password" name="password" 
+        value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>" required >
     </div>
 
 

@@ -1,17 +1,25 @@
 <?php
 
+
 include '../config_db.php';
-$id=$_POST['id'];
-$comment=$_POST['title'];
-//var_dump($id,$comment);
-$sql="INSERT INTO comment  (title,user_id) values (:title,:user_id)";
+$user_id=$_POST['user_id'];
+$text=$_POST['text'];
+
+
+
+$sql="INSERT INTO comment (text,user_id)
+values (?,?)";
 $statement=$pdo->prepare($sql);
-$statement->bindValue(':title',$comment);
-$statement->bindValue(':user_id',$id);
-$statement->execute();
+$statement->execute([
+    $_POST['text'],
+    $_POST['user_id'],
+
+]);
 
 
-//var_dump($statement);
+var_dump($statement);
+
+
 
 
 
