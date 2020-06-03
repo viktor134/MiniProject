@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 25 2020 г., 16:06
+-- Время создания: Июн 03 2020 г., 22:33
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.3.9
 
@@ -30,9 +30,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL
+  `text` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` int(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `comment`
+--
+
+INSERT INTO `comment` (`id`, `text`, `user_id`) VALUES
+(1, 'dsffsd', 43),
+(2, 'dsffsd', 43),
+(3, 'bxdo\r\n', 43),
+(4, 'privet vso kruto', 43),
+(5, 'kruto', 45);
 
 -- --------------------------------------------------------
 
@@ -46,19 +57,16 @@ CREATE TABLE `users` (
   `name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_role` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `user_role` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cookie_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `name`, `password`, `avatar`, `user_role`) VALUES
-(25, 'sadasd@uu', 'Viktor', 'a37b2a637d2541a600d707648460397e', 'black-widow-4k-movie-2020-vn-1920x1080.jpg', 'users'),
-(28, 'hgffgz@gg', 'valod', 'a37b2a637d2541a600d707648460397e', '2020-the-mandalorian-yoda-artwork-4k-jp-1920x1080.jpg', 'admin'),
-(29, 'asdsaddas@dd', 'asdsa@dssds', 'a37b2a637d2541a600d707648460397e', 'MV5BOTJkYjQ0YmItODBhNi00MDgxLWJlYjAtMmExMWYxMzAzODdiXkEyXkFqcGdeQXVyNzMwNTk0OTU@._V1_.jpg', NULL),
-(33, 'tricika96@gmail.com', 'Viktor Vardanyan', 'a37b2a637d2541a600d707648460397e', 'slide-rdv-cgi-ack_small_361672.jpg', NULL),
-(35, 'hgfgh@vfggg', 'ggg', 'a37b2a637d2541a600d707648460397e', 'http://placehold.it/350x50', 'users');
+INSERT INTO `users` (`id`, `email`, `name`, `password`, `avatar`, `user_role`, `cookie_id`) VALUES
+(45, 'tricika96@gmail.com', 'Viktor', 'a37b2a637d2541a600d707648460397e', 'tom_clancys_ghost_recon_breakpoint_video_game-wallpaper-1920x1080.jpg', 'admin', '5ed7f819dcb9a');
 
 --
 -- Индексы сохранённых таблиц
@@ -68,7 +76,8 @@ INSERT INTO `users` (`id`, `email`, `name`, `password`, `avatar`, `user_role`) V
 -- Индексы таблицы `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Индексы таблицы `users`
@@ -82,10 +91,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

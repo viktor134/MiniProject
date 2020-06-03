@@ -9,7 +9,7 @@ $statement->bindValue(1,$id);
 $statement->execute();
 $avatar=$statement->fetch(PDO::FETCH_ASSOC);
 
-if(is_file('/uploads/' . $avatar['avatar']))
+if(is_file('/uploads/' . $avatar['avatar']))  //провераем если есть файл в папке uploads удалаем а потом выполнаяем sql запрос
 {
     unlink('/uploads/' . $avatar['avatar']);
 }

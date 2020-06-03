@@ -1,26 +1,18 @@
 <?php
 
+require_once "../config_db.php";
 
-include '../config_db.php';
-$user_id=$_POST['user_id'];
 $text=$_POST['text'];
+$user_id=$_POST["user_id"];
 
+//var_dump($text,$user_id);
 
-
-$sql="INSERT INTO comment (text,user_id)
-values (?,?)";
+$sql="INSERT INTO comment(text,user_id) VALUES (?,?)";
 $statement=$pdo->prepare($sql);
-$statement->execute([
-    $_POST['text'],
-    $_POST['user_id'],
+$res=$statement->execute([
+  $text,$user_id
 
 ]);
 
-
-var_dump($statement);
-
-
-
-
-
-
+header('Location:../index.php');
+//var_dump($res);
